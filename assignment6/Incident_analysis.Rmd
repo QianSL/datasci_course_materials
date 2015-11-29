@@ -19,14 +19,14 @@ san_data$Hour <- format(san_data$FTime, format='%H')
 head(san_data)
 ```
 
-Following plot shows that weekend of August has more criminal incident than other time period. Possibly the weather is hot and people has more time at weekend.
+Following plot shows that weekend (Friday, Saturday and Sunday) of August has more criminal incident than other time period. Possibly the weather is hot and people has more time at weekend.
 
 ```{r}
 ggplot(san_data) + geom_bar(aes(x=DayOfWeek,fill=Month),position='dodge') + labs(y='Criminal Counts',title='Criminal at Month$WeekDay')
 
 ```
 
-Following plot shows that there are more criminal incident especially at midday. Possibly it's because the temperature is especially high.
+Following plot shows that there are more criminal incident especially at midday (12:00), compare with 11:00 and 13:00. Possibly it's because the temperature is especially high. And 4:00~5:00 in the morning has less criminal, because most of people now goes to rest. However, the happened criminal could be serious ones, which worth further analysis.
 
 ```{r}
 ggplot(san_data) + geom_bar(aes(x=Hour,fill=Month)) + labs(y='Criminal Counts',title='Criminal at Month$WeekDay')
