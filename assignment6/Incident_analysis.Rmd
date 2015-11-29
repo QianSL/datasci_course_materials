@@ -1,0 +1,33 @@
+---
+title: 'Sanfrancisco at summer 2014: August has more Criminal at Weekend'
+author: "Q"
+date: "Sunday, November 29, 2015"
+output: html_document
+---
+
+This is a practice analysis for coursera lesson: Communicating Data Science Result.
+
+Prepare data:
+```{r}
+library(ggplot2)
+setwd('C:/Users/QQ/Documents/GitHub/datasci/datasci_course_materials/assignment6')
+san_data <- read.csv('sanfrancisco_incidents_summer_2014.csv')
+san_data$FTime <- paste(san_data$Date, san_data$Time)
+san_data$FTime <- strptime(san_data$FTime, '%m/%d/%Y %H:%M')
+san_data$Month <- format(san_data$FTime, format='%m')
+san_data$Hour <- format(san_data$FTime, format='%H')
+head(san_data)
+```
+
+Following plot shows that weekend of August has more criminal incident than other time period. Possibly the weather is hot and people has more time at weekend.
+
+```{r}
+ggplot(san_data) + geom_bar(aes(x=DayOfWeek,fill=Month),position='dodge') + labs(y='Criminal Counts',title='Criminal at Month$WeekDay')
+
+```
+
+Following plot shows that there are more criminal incident especially at midday. Possibly it's because the temperature is especially high.
+
+```{r}
+ggplot(san_data) + geom_bar(aes(x=Hour,fill=Month)) + labs(y='Criminal Counts',title='Criminal at Month$WeekDay')
+```
